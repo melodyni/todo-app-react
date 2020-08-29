@@ -1,0 +1,13 @@
+.checkBox {
+  width: 1vw;
+  background-color: lightblue;
+}
+
+p {
+  margin: 0.5vh 1vw;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
