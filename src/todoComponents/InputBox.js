@@ -14,13 +14,20 @@ class InputBox extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addTask(this.state.text);
+    if (this.state.text.length > 0) {
+      this.props.addTask(this.state.text);
+      this.setState({ text: '' });
+    }
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} value={this.state.text}></input>
+        <input
+          onChange={this.handleChange}
+          value={this.state.text}
+          autoFocus
+        ></input>
       </form>
     );
   }

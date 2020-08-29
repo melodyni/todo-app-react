@@ -1,14 +1,19 @@
 .checkBox {
   width: 1vw;
   background-color: lightblue;
+  margin-right: 0.5vw;
 }
 
-p {
-  margin: 0.5vh 1vw;
+.done > .checkBox {
+  background-color: mediumseagreen;
+}
+
+.done > .text {
+  text-decoration: line-through;
 }
 
 .flex {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 2vh;
+  margin: 0vh 2vw 2vh 0vh;
+  cursor: pointer;
 }
