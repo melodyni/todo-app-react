@@ -4,10 +4,15 @@ import Task from './Task';
 class Todo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tasks: [] };
+    this.state = {
+      tasks: [{ message: 'Buy Milk' }, { message: 'fill timesheets' }],
+    };
   }
   render() {
-    return <Task />;
+    const tasks = this.state.tasks.map((task, index) => (
+      <Task task={task} key={index} id={index} />
+    ));
+    return <div>{tasks}</div>;
   }
 }
 

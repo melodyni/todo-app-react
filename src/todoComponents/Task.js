@@ -1,11 +1,11 @@
 import React from 'react';
 import '../todo.css';
 
-const Task = (props) => {
+const Task = ({ task, id }) => {
   return (
     <div className='flex'>
       <div className='checkBox'></div>
-      <p>{`Buy milk`}</p>
+      <p>{task.message}</p>
     </div>
   );
 };
