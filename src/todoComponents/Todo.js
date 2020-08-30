@@ -11,13 +11,13 @@ class Todo extends React.Component {
   }
 
   addTask(task) {
-    const newTask = { message: task, isDone: false };
+    const newTask = { message: task, status: 0 };
     this.setState({ tasks: this.state.tasks.concat(newTask) });
   }
 
   toggleStatus(id) {
     const tasks = this.state.tasks.slice();
-    tasks[id].isDone = !tasks[id].isDone;
+    tasks[id].status = (tasks[id].status + 1) % 3;
     this.setState({ tasks: tasks });
   }
 

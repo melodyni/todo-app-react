@@ -12,6 +12,10 @@
   text-decoration: line-through;
 }
 
+.doing > .checkBox {
+  background-color: orange;
+}
+
 .flex {
   display: flex;
   margin: 0vh 2vw 2vh 0vh;
