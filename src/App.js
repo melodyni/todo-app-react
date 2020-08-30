@@ -4,7 +4,7 @@ import './todo.css';
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <h1>Todo</h1>
       <Todo />
     </div>

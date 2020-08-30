@@ -1,13 +1,13 @@
 import React from 'react';
-import Task from './Task';
 import InputBox from './InputBox';
+import TaskList from './TaskList';
 
 class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { tasks: [] };
     this.addTask = this.addTask.bind(this);
-    this.toggleStatus = this.toggleStatus.bind(this);
+    this.updateTaskStatus = this.updateTaskStatus.bind(this);
   }
 
   addTask(task) {
@@ -15,25 +15,19 @@ class Todo extends React.Component {
     this.setState({ tasks: this.state.tasks.concat(newTask) });
   }
 
-  toggleStatus(id) {
+  updateTaskStatus(id) {
     const tasks = this.state.tasks.slice();
     tasks[id].status = (tasks[id].status + 1) % 3;
     this.setState({ tasks: tasks });
   }
 
   render() {
-    const tasks = this.state.tasks.map((task, index) => (
-      <Task
-        task={task}
-        key={index}
-        id={index}
-        toggleStatus={this.toggleStatus}
-      />
-    ));
-
     return (
       <div>
-        {tasks}
+        <TaskList
+          tasks={this.state.tasks}
+          updateTaskStatus={this.updateTaskStatus}
+        />
         <InputBox addTask={this.addTask} />
       </div>
     );
