@@ -2,7 +2,7 @@ import React from 'react';
 import '../todo.css';
 
 const Task = ({ task, id, updateTaskStatus }) => {
-  const status = { 1: 'doing', 2: 'done' };
+  const status = ['todo', 'doing', 'done'];
   const style = status[task.status];
   return (
     <div onClick={() => updateTaskStatus(id)} className={`flex ${style}`}>

@@ -1,7 +1,10 @@
 .checkBox {
   width: 1vw;
-  background-color: lightblue;
   margin-right: 0.5vw;
+}
+
+.todo > .checkBox {
+  background-color: lightblue;
 }
 
 .done > .checkBox {
