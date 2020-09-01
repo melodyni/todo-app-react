@@ -16,7 +16,6 @@ class Todo extends React.Component {
   addTask(task) {
     const newTask = { message: task, status: getDefaultStatus() };
     this.setState((state) => ({
-      title: state.title,
       tasks: [...state.tasks, newTask],
     }));
   }
@@ -25,17 +24,10 @@ class Todo extends React.Component {
     const tasks = this.state.tasks.slice();
     tasks[id].status = getNextStatus(tasks[id].status);
     this.setState({ tasks: tasks });
-    this.setState((state) => ({
-      title: state.title,
-      tasks: tasks,
-    }));
   }
 
   updateTitle(title) {
-    this.setState((state) => ({
-      title: title,
-      tasks: state.tasks,
-    }));
+    this.setState({ title: title });
   }
 
   render() {

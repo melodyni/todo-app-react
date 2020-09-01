@@ -29,3 +29,9 @@
   width: 20%;
   margin: 10vh 15vh;
 }
+
+input {
+  height: 3.5vh;
+  margin: 1vh 0;
+  font-size: large;
+}
