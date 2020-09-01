@@ -1,6 +1,7 @@
 import React from 'react';
 import InputBox from './InputBox';
 import TaskList from './TaskList';
+import { getDefaultStatus, getNextStatus } from './status';
 
 class Todo extends React.Component {
   constructor(props) {
@@ -11,13 +12,13 @@ class Todo extends React.Component {
   }
 
   addTask(task) {
-    const newTask = { message: task, status: 0 };
+    const newTask = { message: task, status: getDefaultStatus() };
     this.setState({ tasks: this.state.tasks.concat(newTask) });
   }
 
   updateTaskStatus(id) {
     const tasks = this.state.tasks.slice();
-    tasks[id].status = (tasks[id].status + 1) % 3;
+    tasks[id].status = getNextStatus(tasks[id].status);
     this.setState({ tasks: tasks });
   }
 
