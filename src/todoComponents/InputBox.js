@@ -3,7 +3,7 @@ import React from 'react';
 class InputBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = { text: props.text };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,7 +15,7 @@ class InputBox extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.text.length > 0) {
-      this.props.addTask(this.state.text);
+      this.props.onEnter(this.state.text);
       this.setState({ text: '' });
     }
   }
@@ -32,5 +32,9 @@ class InputBox extends React.Component {
     );
   }
 }
+
+InputBox.defaultProps = {
+  text: '',
+};
 
 export default InputBox;
