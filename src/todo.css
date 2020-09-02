@@ -1,6 +1,13 @@
 .checkBox {
   width: 1vw;
-  margin-right: 0.5vw;
+  height: 4vh;
+}
+
+.text {
+  width: 13vw;
+  margin: 0 1vw;
+  word-wrap: break-word;
+  font-size: large;
 }
 
 .todo > .checkBox {
@@ -19,9 +26,15 @@
   background-color: orange;
 }
 
+.cross {
+  color: grey;
+  font-weight: 600;
+}
+
 .flex {
   display: flex;
   margin: 0vh 2vw 2vh 0vh;
+  justify-content: space-between;
 }
 
 .container {
