@@ -1,7 +1,7 @@
 import React from 'react';
 import '../todo.css';
 
-const Task = ({ task, updateTaskStatus }) => {
+const Task = ({ task, updateTaskStatus ,removeTask}) => {
   const { id, message, status } = task;
   return (
     <div className={`flex ${status}`}>
@@ -9,7 +9,9 @@ const Task = ({ task, updateTaskStatus }) => {
       <div className='text' onClick={() => updateTaskStatus(id)}>
         {message}
       </div>
-      <div className='cross'>{'X'}</div>
+      <div className='cross' onClick={() => removeTask(id)}>
+        {'X'}
+      </div>
     </div>
   );
 };

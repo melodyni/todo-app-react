@@ -12,6 +12,7 @@ class Todo extends React.Component {
     this.addTask = this.addTask.bind(this);
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
   addTask(task) {
@@ -27,12 +28,19 @@ class Todo extends React.Component {
       const tasks = state.tasks.map((task) => ({ ...task }));
       const taskToUpdate = tasks.find((task) => task.id === id);
       taskToUpdate.status = getNextStatus(taskToUpdate.status);
-      return { title: state.title, tasks };
+      return { tasks };
     });
   }
 
   updateTitle(title) {
     this.setState({ title });
+  }
+
+  removeTask(id) {
+    this.setState((state) => {
+      const tasks = state.tasks.filter((task) => task.id !== id);
+      return { tasks };
+    });
   }
 
   render() {
@@ -42,6 +50,7 @@ class Todo extends React.Component {
         <TaskList
           tasks={this.state.tasks}
           updateTaskStatus={this.updateTaskStatus}
+          removeTask={this.removeTask}
         />
         <InputBox onEnter={this.addTask} />
       </div>
