@@ -1,16 +1,16 @@
 import React from 'react';
 import '../todo.css';
 
-const Task = ({ task, updateTaskStatus ,removeTask}) => {
+const Task = ({ task, updateTaskStatus, removeTask }) => {
   const { id, message, status } = task;
   return (
-    <div className={`flex ${status}`}>
+    <div className={`taskBox ${status}`}>
       <div className='checkBox'></div>
       <div className='text' onClick={() => updateTaskStatus(id)}>
         {message}
       </div>
       <div className='cross' onClick={() => removeTask(id)}>
-        {'X'}
+        X
       </div>
     </div>
   );

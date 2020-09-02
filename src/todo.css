@@ -1,6 +1,5 @@
 .checkBox {
   width: 1vw;
-  height: 4vh;
 }
 
 .text {
@@ -29,12 +28,18 @@
 .cross {
   color: grey;
   font-weight: 600;
+  font-size: large;
+  display: none;
 }
 
-.flex {
+.taskBox:hover .cross {
+  cursor: pointer;
+  display: block;
+}
+
+.taskBox {
   display: flex;
-  margin: 0vh 2vw 2vh 0vh;
-  justify-content: space-between;
+  margin-bottom: 2vh;
 }
 
 .container {
@@ -42,7 +47,6 @@
   cursor: pointer;
   display: flex;
   justify-content: space-evenly;
-  cursor: pointer;
 }
 
 input {
