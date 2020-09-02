@@ -19,7 +19,7 @@ class Title extends React.Component {
   }
 
   render() {
-    if (this.state.isEditable) {
+    if (this.state.isEditable) {  
       return <InputBox text={this.props.title} onEnter={this.updateTitle} />;
     }
     return <h2 onClick={this.handleClick}>{this.props.title}</h2>;

@@ -21,13 +21,13 @@ class Todo extends React.Component {
   }
 
   updateTaskStatus(id) {
-    const tasks = this.state.tasks.slice();
+    const tasks = [...this.state.tasks];
     tasks[id].status = getNextStatus(tasks[id].status);
-    this.setState({ tasks: tasks });
+    this.setState({ tasks });
   }
 
   updateTitle(title) {
-    this.setState({ title: title });
+    this.setState({ title });
   }
 
   render() {
