@@ -1,11 +1,12 @@
 import React from 'react';
 import '../todo.css';
 
-const Task = ({ task, id, updateTaskStatus }) => {
+const Task = ({ task, updateTaskStatus }) => {
+  const { id, message, status } = task;
   return (
-    <div onClick={() => updateTaskStatus(id)} className={`flex ${task.status}`}>
+    <div onClick={() => updateTaskStatus(id)} className={`flex ${status}`}>
       <div className='checkBox'></div>
-      <div className='text'>{task.message}</div>
+      <div className='text'>{message}</div>
     </div>
   );
 };

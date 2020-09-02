@@ -7,6 +7,7 @@ import { getDefaultStatus, getNextStatus } from './status';
 class Todo extends React.Component {
   constructor(props) {
     super(props);
+    this.lastId = 1;
     this.state = { title: 'todo', tasks: [] };
     this.addTask = this.addTask.bind(this);
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
@@ -14,16 +15,20 @@ class Todo extends React.Component {
   }
 
   addTask(task) {
-    const newTask = { message: task, status: getDefaultStatus() };
+    const id = this.lastId++;
+    const newTask = { id, message: task, status: getDefaultStatus() };
     this.setState((state) => ({
       tasks: [...state.tasks, newTask],
     }));
   }
 
   updateTaskStatus(id) {
-    const tasks = [...this.state.tasks];
-    tasks[id].status = getNextStatus(tasks[id].status);
-    this.setState({ tasks });
+    this.setState((state) => {
+      const tasks = state.tasks.map((task) => ({ ...task }));
+      const taskToUpdate = tasks.find((task) => task.id === id);
+      taskToUpdate.status = getNextStatus(taskToUpdate.status);
+      return { title: state.title, tasks };
+    });
   }
 
   updateTitle(title) {

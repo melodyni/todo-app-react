@@ -22,16 +22,19 @@
 .flex {
   display: flex;
   margin: 0vh 2vw 2vh 0vh;
-  cursor: pointer;
 }
 
 .container {
-  width: 20%;
   margin: 10vh 15vh;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
 }
 
 input {
-  height: 3.5vh;
-  margin: 1vh 0;
+  height: 3vh;
+  width: 17vw;
+  margin: 3vh 0 1vh 0;
   font-size: large;
 }

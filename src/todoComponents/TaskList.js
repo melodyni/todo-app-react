@@ -2,13 +2,8 @@ import React from 'react';
 import Task from './Task';
 
 const TaskList = ({ tasks, updateTaskStatus }) => {
-  return tasks.map((task, index) => (
-    <Task
-      task={task}
-      key={index}
-      id={index}
-      updateTaskStatus={updateTaskStatus}
-    />
+  return tasks.map((task) => (
+    <Task task={task} key={task.id} updateTaskStatus={updateTaskStatus} />
   ));
 };
 
