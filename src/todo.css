@@ -7,6 +7,7 @@
   margin: 0 1vw;
   word-wrap: break-word;
   font-size: large;
+  cursor: pointer;
 }
 
 .todo > .checkBox {
@@ -39,12 +40,17 @@
 
 .taskBox {
   display: flex;
-  margin-bottom: 2vh;
+  margin-bottom: 3vh;
+}
+
+.titleText {
+  width: 16vw;
+  font-size: x-large;
+  font-weight: 700;
 }
 
 .container {
   margin: 10vh 15vh;
-  cursor: pointer;
   display: flex;
   justify-content: space-evenly;
 }
@@ -52,6 +58,6 @@
 input {
   height: 3vh;
   width: 17vw;
-  margin: 3vh 0 1vh 0;
   font-size: large;
+  margin-bottom: 2vh;
 }

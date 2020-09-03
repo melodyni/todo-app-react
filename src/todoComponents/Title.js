@@ -1,5 +1,7 @@
 import React from 'react';
 import InputBox from './InputBox';
+import Delete from './Delete';
+import '../todo.css';
 
 class Title extends React.Component {
   constructor(props) {
@@ -19,10 +21,18 @@ class Title extends React.Component {
   }
 
   render() {
-    if (this.state.isEditable) {  
-      return <InputBox text={this.props.title} onEnter={this.updateTitle} />;
+    const { title, removeTodo } = this.props;
+    if (this.state.isEditable) {
+      return <InputBox text={title} onEnter={this.updateTitle} />;
     }
-    return <h2 onClick={this.handleClick}>{this.props.title}</h2>;
+    return (
+      <div className='taskBox'>
+        <div className='titleText' onClick={this.handleClick}>
+          {title}
+        </div>
+        <Delete id={null} remove={removeTodo} />
+      </div>
+    );
   }
 }
 

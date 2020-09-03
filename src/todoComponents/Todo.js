@@ -12,6 +12,7 @@ class Todo extends React.Component {
     this.updateTaskStatus = this.updateTaskStatus.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.removeTask = this.removeTask.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   addTask(task) {
@@ -43,10 +44,18 @@ class Todo extends React.Component {
     });
   }
 
+  removeTodo() {
+    this.setState({ title: 'todo', tasks: [], status: getDefaultStatus() });
+  }
+
   render() {
     return (
       <div>
-        <Title title={this.state.title} updateTitle={this.updateTitle} />
+        <Title
+          title={this.state.title}
+          updateTitle={this.updateTitle}
+          removeTodo={this.removeTodo}
+        />
         <TaskList
           tasks={this.state.tasks}
           updateTaskStatus={this.updateTaskStatus}
