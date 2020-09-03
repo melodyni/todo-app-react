@@ -1,4 +1,5 @@
 import React from 'react';
+import Delete from './Delete';
 import '../todo.css';
 
 const Task = ({ task, updateTaskStatus, removeTask }) => {
@@ -9,9 +10,7 @@ const Task = ({ task, updateTaskStatus, removeTask }) => {
       <div className='text' onClick={() => updateTaskStatus(id)}>
         {message}
       </div>
-      <div className='cross' onClick={() => removeTask(id)}>
-        X
-      </div>
+      <Delete id={id} remove={removeTask} />
     </div>
   );
 };
