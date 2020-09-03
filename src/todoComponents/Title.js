@@ -30,7 +30,7 @@ class Title extends React.Component {
         <div className='titleText' onClick={this.handleClick}>
           {title}
         </div>
-        <Delete id={null} remove={removeTodo} />
+        <Delete remove={removeTodo} />
       </div>
     );
   }
