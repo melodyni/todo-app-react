@@ -2,7 +2,10 @@ import React from 'react';
 import InputBox from './InputBox';
 import TaskList from './TaskList';
 import Title from './Title';
+import withDelete from './withDelete';
 import { getDefaultStatus, getNextStatus } from './status';
+
+const DelibleTitle = withDelete(Title);
 
 class Todo extends React.Component {
   constructor(props) {
@@ -51,10 +54,10 @@ class Todo extends React.Component {
   render() {
     return (
       <div>
-        <Title
+        <DelibleTitle
           title={this.state.title}
           updateTitle={this.updateTitle}
-          removeTodo={this.removeTodo}
+          remove={this.removeTodo}
         />
         <TaskList
           tasks={this.state.tasks}

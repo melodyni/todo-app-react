@@ -1,39 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputBox from './InputBox';
-import Delete from './Delete';
 import '../todo.css';
 
-class Title extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isEditable: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.updateTitle = this.updateTitle.bind(this);
-  }
+const Title = (props) => {
+  const [isEditable, setEditable] = useState(false);
 
-  handleClick() {
-    this.setState({ isEditable: true });
-  }
+  const updateTitle = (newTitle) => {
+    props.updateTitle(newTitle);
+    setEditable(!isEditable);
+  };
 
-  updateTitle(title) {
-    this.props.updateTitle(title);
-    this.setState({ isEditable: false });
+  if (isEditable) {
+    return <InputBox text={props.title} onEnter={updateTitle} />;
   }
-
-  render() {
-    const { title, removeTodo } = this.props;
-    if (this.state.isEditable) {
-      return <InputBox text={title} onEnter={this.updateTitle} />;
-    }
-    return (
-      <div className='taskBox'>
-        <div className='titleText' onClick={this.handleClick}>
-          {title}
-        </div>
-        <Delete remove={removeTodo} />
+  return (
+    <div className='taskBox'>
+      <div className='titleText' onClick={() => setEditable(!isEditable)}>
+        {props.title}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Title;

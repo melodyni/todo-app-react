@@ -5,7 +5,7 @@ const withDelete = (Component) => {
     return (
       <div className='taskBox'>
         <Component {...props} />
-        <div className='cross' onClick={() => props.removeTask(props.id)}>
+        <div className='cross' onClick={() => props.remove(props.id)}>
           X
         </div>
       </div>

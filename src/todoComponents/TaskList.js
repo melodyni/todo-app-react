@@ -12,7 +12,7 @@ const TaskList = ({ tasks, updateTaskStatus, removeTask }) => {
       task={task}
       key={task.id}
       updateTaskStatus={updateTaskStatus}
-      removeTask={removeTask}
+      remove={removeTask}
     />
   ));
 };
