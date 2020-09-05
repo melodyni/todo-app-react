@@ -1,8 +1,8 @@
 import React from 'react';
-import Delete from './Delete';
+// import Delete from './Delete';
 import '../todo.css';
 
-const Task = ({ task, updateTaskStatus, removeTask }) => {
+const Task = ({ task, updateTaskStatus }) => {
   const { id, message, status } = task;
   return (
     <div className={`taskBox ${status}`}>
@@ -10,7 +10,6 @@ const Task = ({ task, updateTaskStatus, removeTask }) => {
       <div className='text' onClick={() => updateTaskStatus(id)}>
         {message}
       </div>
-      <Delete id={id} remove={removeTask} />
     </div>
   );
 };
