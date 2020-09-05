@@ -1,40 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class InputBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: props.text };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const InputBox = (props) => {
+  const [text, setText] = useState(props.text);
 
-  handleChange(event) {
-    this.setState({ text: event.target.value });
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.text.length > 0) {
-      this.props.onEnter(this.state.text);
-      this.setState({ text: '' });
+    if (text.length > 0) {
+      props.onEnter(text);
+      setText('');
     }
-  }
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          onChange={this.handleChange}
-          value={this.state.text}
-          autoFocus
-        ></input>
-      </form>
-    );
-  }
-}
+  const handleChange = (event) => setText(event.target.value);
 
-InputBox.defaultProps = {
-  text: '',
+  return (
+    <form onSubmit={handleSubmit}>
+      <input onChange={handleChange} value={text} autoFocus></input>
+    </form>
+  );
 };
+
+InputBox.defaultProps = { text: '' };
 
 export default InputBox;
