@@ -1,5 +1,4 @@
 import React from 'react';
-// import Delete from './Delete';
 import '../todo.css';
 
 const Task = ({ task, updateTaskStatus }) => {
