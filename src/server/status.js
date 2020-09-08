@@ -11,4 +11,4 @@ const status = {
 const getNextStatus = (currentStatus) => status[currentStatus];
 const getDefaultStatus = () => TODO;
 
-export { getDefaultStatus, getNextStatus };
+module.exports =   { getDefaultStatus, getNextStatus };
