@@ -1,30 +1,15 @@
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+const { api } = require('./apiRoute');
 
-const {
-  getTodoData,
-  addTask,
-  updateTaskStatus,
-  removeTask,
-  removeTodo,
-  updateTitle,
-} = require('./handler.js');
+app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(req.url, req.method);
   next();
 });
 
-app.get('/api/todoData', getTodoData);
-
-app.post('/api/updateTaskStatus', updateTaskStatus);
-
-app.post('/api/removeTask', removeTask);
-app.post('/api/removeTodo', removeTodo);
-app.post('/api/updateTitle', updateTitle);
-
-app.post('/api/addTask', addTask);
+app.use('/api', api);
 
 app.listen(3001, () => console.log(`Listening on port 3001`));

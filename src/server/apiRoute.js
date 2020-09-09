@@ -1,3 +1,6 @@
+const express = require('express');
+const api = express.Router();
+
 const { getDefaultStatus, getNextStatus } = require('./status');
 
 let todoState = { lastId: 0, tasks: [], title: 'todo' };
@@ -35,15 +38,14 @@ const removeTodo = (req, res) => {
 const updateTitle = (req, res) => {
   const { title } = req.body;
   todoState = { ...todoState, title };
-  console.log(todoState);
   res.end();
 };
 
-module.exports = {
-  getTodoData,
-  addTask,
-  updateTaskStatus,
-  removeTask,
-  removeTodo,
-  updateTitle,
-};
+api.get('/todoData', getTodoData);
+api.post('/updateTaskStatus', updateTaskStatus);
+api.post('/removeTask', removeTask);
+api.post('/removeTodo', removeTodo);
+api.post('/updateTitle', updateTitle);
+api.post('/addTask', addTask);
+
+module.exports = { api };
