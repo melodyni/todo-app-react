@@ -3,63 +3,36 @@ const redisClient = redis.createClient({ db: 1 });
 
 const { getDefaultStatus, getNextStatus } = require('./status');
 
-const todoTemplate = () => ({ tasks: [], title: 'todo' });
+const defaultTodo = () => ({ tasks: [], title: 'todo', lastId: 0 });
 
-const increment = (key) => {
-  return new Promise((resolve, reject) => {
-    redisClient.incr(key, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-};
-
-const getTodo = (key) => {
-  return new Promise((resolve, reject) => {
-    redisClient.get(key, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-};
-
-const setTodo = (key, value) => {
-  return new Promise((resolve, reject) => {
-    redisClient.set(key, JSON.stringify(value), (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
+const setTodo = (req, res) => {
+  const todoData = JSON.stringify(req.app.locals.todoData);
+  redisClient.set('todoData', todoData, (err, data) => {
+    if (!err) {
+      res.end();
+    }
   });
 };
 
 const getTodoData = (req, res) => {
-  getTodo('todoData')
-    .then((x) => {
-      req.app.locals.todoData = JSON.parse(x) || todoTemplate();
-    })
-    .then(() => {
-      return res.json(req.app.locals.todoData);
-    });
+  redisClient.get('todoData', (err, data) => {
+    if (err) {
+      req.app.locals.todoData = defaultTodo();
+    }
+    console.log(err, data, req.app.locals);
+    req.app.locals.todoData = JSON.parse(data) || defaultTodo();
+    const { tasks, title } = req.app.locals.todoData;
+    res.json({ tasks, title });
+  });
 };
 
 const addTask = (req, res) => {
   const { task } = req.body;
   const { todoData } = req.app.locals;
-  increment('lastId')
-    .then((id) => {
-      const newTask = { id, message: task, status: getDefaultStatus() };
-      todoData.tasks.push(newTask);
-    })
-    .then(() => setTodo('todoData', todoData).then(() => res.end()));
+  const id = todoData.lastId++;
+  const newTask = { id, message: task, status: getDefaultStatus() };
+  todoData.tasks.push(newTask);
+  setTodo(req, res);
 };
 
 const updateTaskStatus = (req, res) => {
@@ -67,24 +40,26 @@ const updateTaskStatus = (req, res) => {
   const { todoData } = req.app.locals;
   const taskToUpdate = todoData.tasks.find((task) => task.id === id);
   taskToUpdate.status = getNextStatus(taskToUpdate.status);
-  setTodo('todoData', todoData).then(() => res.end());
+  setTodo(req, res);
 };
 
 const removeTask = (req, res) => {
   const { id } = req.body;
   const { todoData } = req.app.locals;
   todoData.tasks = todoData.tasks.filter((task) => task.id !== id);
-  setTodo('todoData', todoData).then(() => res.end());
+  setTodo(req, res);
 };
 
 const removeTodo = (req, res) => {
-  setTodo('todoData', todoTemplate()).then(() => res.end());
+  req.app.locals.todoData = defaultTodo();
+  setTodo(req, res);
 };
 
 const updateTitle = (req, res) => {
   const { title } = req.body;
   const { todoData } = req.app.locals;
-  setTodo('todoData', { ...todoData, title }).then(() => res.end());
+  todoData.title = title;
+  setTodo(req, res);
 };
 
 module.exports = {

@@ -8,7 +8,6 @@ import TodoAPI from './TodoAPI';
 const DelibleTitle = withDelete(Title);
 
 const Todo = (props) => {
-  // const [todo, setTodo] = useState({ lastId: 0, title: 'todo', tasks: [] });
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('todo');
 
