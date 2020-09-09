@@ -8,11 +8,17 @@ import TodoAPI from './TodoAPI';
 const DelibleTitle = withDelete(Title);
 
 const Todo = (props) => {
-  const [todo, setTodo] = useState({ lastId: 0, title: 'todo', tasks: [] });
+  // const [todo, setTodo] = useState({ lastId: 0, title: 'todo', tasks: [] });
+  const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState('todo');
 
   const updateTodo = () => {
-    TodoAPI.fetchTodoData().then(setTodo);
+    TodoAPI.fetchTodoData().then(({ tasks, title }) => {
+      setTasks(tasks);
+      setTitle(title);
+    });
   };
+
   useEffect(updateTodo, []);
 
   const addTask = (task) => TodoAPI.addTask(task).then(updateTodo);
@@ -29,12 +35,12 @@ const Todo = (props) => {
   return (
     <div>
       <DelibleTitle
-        title={todo.title}
+        title={title}
         updateTitle={updateTitle}
         remove={removeTodo}
       />
       <TaskList
-        tasks={todo.tasks}
+        tasks={tasks}
         updateTaskStatus={updateTaskStatus}
         removeTask={removeTask}
       />
